@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AFAQHD</title>
+  <style>
+    :root {
+      --primary: #c62828;
+      --primary-dark: #8e1b1b;
+      --accent: #ef5350;
+      --bg: #fff5f5;
+      --text: #1f1f1f;
+      --muted: #5f6368;
+      --white: #ffffff;
+      --border: #f0d9d9;
+      --shadow: 0 18px 40px rgba(198, 40, 40, 0.14);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: var(--primary-dark);
+      color: rgba(255,255,255,0.95);
+      font-size: 14px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 0;
+      flex-wrap: wrap;
+    }
+
+    .topbar-left,
+    .topbar-right {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .nav-links a:hover { color: var(--primary); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .hero {
+      background:
+        linear-gradient(135deg, rgba(198, 40, 40, 0.92), rgba(142, 27, 27, 0.88)),
+        url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80') center/cover;
+      color: var(--white);
+      padding: 96px 0 90px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, h4, p { margin-top: 0; }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 60px);
+      line-height: 1.05;
+      margin-bottom: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.92);
+      max-width: 650px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .call-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: var(--radius);
+      padding: 28px;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+
+    .call-card .label {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.8;
+      margin-bottom: 8px;
+    }
+
+    .call-card .number {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    section {
+      padding: 82px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 36px;
+    }
+
+    .section-head .tag {
+      color: var(--primary);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .section-head h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.1;
+      margin-bottom: 14px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .soft-bg { background: var(--bg); }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 10px 25px rgba(15, 76, 129, 0.05);
+    }
+
+    .checklist {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .check {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--muted);
+    }
+
+    .check strong { color: var(--text); }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .service-card,
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: 0.25s ease;
+      box-shadow: 0 10px 25px rgba(15, 76, 129, 0.04);
+    }
+
+    .service-card:hover,
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(15, 76, 129, 0.09);
+      color: var(--primary);
+      font-size: 22px;
+      margin-bottom: 18px;
+      font-weight: 800;
+    }
+
+    .service-card h3,
+    .feature-card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .service-card p,
+    .feature-card p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .stat h3 {
+      font-size: 34px;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--white);
+      border-radius: 30px;
+      padding: 48px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta h2 {
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: rgba(255,255,255,0.9);
+      max-width: 720px;
+      margin-bottom: 24px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      font: inherit;
+      outline: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(15, 76, 129, 0.1);
+    }
+
+    textarea { min-height: 150px; resize: vertical; }
+
+    footer {
+      background: #1a1a1a;
+      color: rgba(255,255,255,0.86);
+      padding: 60px 0 28px;
+      margin-top: 80px;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: #25d366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 18px 35px rgba(37, 211, 102, 0.35);
+      z-index: 1200;
+      transition: 0.25s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 26px;
+    }
+
+    .footer-title {
+      color: var(--white);
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 10px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .copyright {
+      margin-top: 26px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--primary);
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .two-col,
+      .grid-3,
+      .contact-grid,
+      .footer-grid,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 20px;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.show { display: flex; }
+      .mobile-toggle { display: block; }
+      .navbar { position: relative; }
+      .cta { padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <span>📧 Ayub@afaqhd.com</span>
+        <span>📍 Canada-Wide Online Support</span>
+      </div>
+      <div class="topbar-right">
+        <span>Facebook</span>
+        <span>Instagram</span>
+        <span>LinkedIn</span>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="container navbar">
+      <a href="#home" class="logo">AFAQ<span>HD</span></a>
+      <button class="mobile-toggle" aria-label="Toggle menu" onclick="toggleMenu()">☰</button>
+      <nav class="nav-links" id="navMenu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="btn btn-primary">Book Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">education funding, college admissions, and application support across Canada</span>
+        <h1>AFAQHD — Expert education funding Support and Educational Services in Canada</h1>
+        <p>
+          AFAQHD is a leading provider of services dedicated to helping individuals and groups achieve their educational goals in Canada. We simplify the educational journey with expert guidance, personalized support, and trusted help for education funding applications, college connections, and federal or provincial paperwork.
+        </p>
+        <div class="hero-actions">
+          <a href="#services" class="btn btn-primary">Explore Services</a>
+          <a href="https://wa.me/14165677231" class="btn btn-outline" target="_blank">Chat on WhatsApp</a>
+        </div>
+      </div>
+      <div class="call-card">
+        <div class="label">education funding and application help starts here</div>
+        <div class="number">416-567-7231</div>
+        <p>
+          Get professional support for education funding applications, college enrollment pathways, and federal or provincial submissions with online, in-person, or hybrid guidance.
+        </p>
+        <a href="https://wa.me/14165677231" class="btn btn-primary" target="_blank">Message on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="soft-bg">
+    <div class="container two-col">
+      <div>
+        <div class="section-head">
+          <span class="tag">Flexible Learning & Support</span>
+          <h2>In-person, online, or hybrid support built around your needs</h2>
+          <p>
+            We tailor our services to different learning and communication preferences, making it easier for students, families, and applicants to get the support they need in the format that works best for them.
+          </p>
+        </div>
+        <div class="checklist">
+          <div class="check"><span>✔</span><span><strong>education funding application guidance</strong> from start to submission.</span></div>
+          <div class="check"><span>✔</span><span><strong>College connections</strong> through strong relationships with private and public institutions.</span></div>
+          <div class="check"><span>✔</span><span><strong>Federal and provincial support</strong> for accurate and timely submissions.</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Why clients choose AFAQHD</h3>
+        <p>
+          Our mission is to simplify complex educational and government processes through expert guidance and personalized support. We help reduce stress, improve accuracy, and make enrollment and applications more accessible.
+        </p>
+        <a href="#contact" class="btn btn-outline">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">About us</span>
+        <h2>Helping students and families achieve educational goals in Canada</h2>
+        <p>
+          We specialize in assisting clients with education funding applications and connecting students with a variety of colleges to pursue their dream education. Our strong relationships with both private and public colleges help streamline the application process and make enrollment more accessible.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="service-card">
+          <div class="icon">A</div>
+          <h3>education funding Application Support</h3>
+          <p>Step-by-step help with education funding applications, document requirements, and submission guidance.</p>
+          <a href="#contact" class="btn btn-outline">Learn More</a>
+        </div>
+        <div class="service-card">
+          <div class="icon">B</div>
+          <h3>College Admission Assistance</h3>
+          <p>Support with connecting students to public and private colleges and helping streamline the enrollment process.</p>
+          <a href="#contact" class="btn btn-outline">Learn More</a>
+        </div>
+        <div class="service-card">
+          <div class="icon">C</div>
+          <h3>Federal & Provincial Applications</h3>
+          <p>Accurate and timely support for federal and provincial submissions based on your personal situation.</p>
+          <a href="#contact" class="btn btn-outline">Learn More</a>
+        </div>
+        <div class="service-card">
+          <div class="icon">D</div>
+          <h3>Travel Document Support</h3>
+          <p>Guidance with travel document applications and related paperwork to help you complete the process properly.</p>
+          <a href="#contact" class="btn btn-outline">Learn More</a>
+        </div>
+        <div class="service-card">
+          <div class="icon">E</div>
+          <h3>Family & Benefit Applications</h3>
+          <p>Help with Canada Child Benefit (CCB), Ontario Works, ODSP, and other important benefit-related applications.</p>
+          <a href="#contact" class="btn btn-outline">Learn More</a>
+        </div>
+        <div class="service-card">
+          <div class="icon">F</div>
+          <h3>Citizenship, PR & More</h3>
+          <p>Support for Canadian Citizenship, PR applications, and many other federal or provincial processes requiring careful paperwork.</p>
+          <a href="#contact" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="soft-bg" id="services">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">Services</span>
+        <h2>Services designed to support education, funding, and important applications</h2>
+        <p>
+          Our services are designed to simplify complex paperwork and deliver personalized solutions efficiently for students, families, and individuals across Canada.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="service-card">
+          <div class="icon">A</div>
+          <h3>Application Assistance</h3>
+          <p>Professional support with forms, submissions, document requirements, and next steps.</p>
+          <a href="#contact" class="btn btn-outline">Learn More</a>
+        </div>
+        <div class="service-card">
+          <div class="icon">B</div>
+          <h3>Federal & Provincial Support</h3>
+          <p>Guidance with online or offline applications, provincial processes, and Canadian service pathways.</p>
+          <a href="#contact" class="btn btn-outline">Learn More</a>
+        </div>
+        <div class="service-card">
+          <div class="icon">C</div>
+          <h3>Consultation & Follow-Up</h3>
+          <p>Book one-on-one consultations for personalized advice, document review, and follow-up planning.</p>
+          <a href="#contact" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta">
+        <h2>Ready to get started with AFAQHD?</h2>
+        <p>
+          Whether you need help with education funding, college applications, travel documents, benefits, citizenship, PR, or other federal and provincial paperwork, AFAQHD is ready to support you with personalized guidance.
+        </p>
+        <a href="https://wa.me/14165677231" class="btn btn-primary" target="_blank">Start on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container contact-grid">
+      <div>
+        <div class="section-head">
+          <span class="tag">Contact us</span>
+          <h2>Let’s talk about your application or educational goals</h2>
+          <p>
+            Contact AFAQHD for support with education funding applications, college admissions, travel documents, CCB, Citizenship, PR, ODSP, Ontario Works, and many more services.
+          </p>
+        </div>
+        <div class="panel">
+          <p><strong>Phone:</strong> 416-567-7231</p>
+          <p><strong>Email:</strong> Ayub@afaqhd.com</p>
+          <p><strong>Address:</strong> Mississauga, Ontario, Canada</p>
+          <p><strong>Hours:</strong> Monday to Saturday, 9:00 AM – 6:00 PM</p>
+          <p><strong>WhatsApp:</strong> Direct chat available</p>
+        </div>
+      </div>
+      <div class="panel">
+        <form>
+          <input type="text" placeholder="Your Name" />
+          <input type="email" placeholder="Email Address" />
+          <input type="tel" placeholder="Phone Number" />
+          <select>
+            <option>Select a Service</option>
+            <option>education funding Application Support</option>
+            <option>College Admission Assistance</option>
+            <option>Federal & Provincial Applications</option>
+            <option>Travel Document Support</option>
+            <option>Family & Benefit Applications</option>
+            <option>Citizenship / PR Support</option>
+          </select>
+          <textarea placeholder="Tell us how we can help"></textarea>
+          <button type="submit" class="btn btn-primary">Send Request</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo" style="color: white; margin-bottom: 14px;">AFAQ<span>HD</span></div>
+          <p>
+            AFAQHD provides expert support for education funding applications, college admissions, and federal or provincial services with a professional, student-focused approach across Canada.
+          </p>
+        </div>
+        <div>
+          <div class="footer-title">Navigation</div>
+          <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-title">Contact</div>
+          <div class="footer-links">
+            <span>416-567-7231</span>
+            <span>Ayub@afaqhd.com</span>
+            <span>Mississauga, Ontario, Canada</span>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        © 2026 AFAQHD. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/14165677231" target="_blank" aria-label="Chat with AFAQHD on WhatsApp">✆</a>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navMenu').classList.toggle('show');
+    }
+  </script>
+</body>
+</html>
